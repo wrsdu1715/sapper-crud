@@ -32,11 +32,18 @@
 	}
 </style>
 
+<script>
+import 'bulma/css/bulma.css'
+import Button from 'svelma/src/components/Button.svelte'
+
+</script>
+
 <svelte:head>
 	<title>Sapper project template</title>
 </svelte:head>
 
 <h1>Great success!</h1>
+<Button type="is-primary">I'm a Button!</Button>
 
 <figure>
 	<img alt='Borat' src='great-success.png'>
