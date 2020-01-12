@@ -1,0 +1,1 @@
+<img src="delete.svg" alt="delete" width="32" height="32">
