@@ -1,9 +1,18 @@
-<script>
+<script context="module">
   import PageTitle from '../../components/molecules/PageTitle.svelte'
   import Button from 'svelma/src/components/Button.svelte'
 
   let posts = [];
   let loading = false;
+
+  export function preload({ params, query }) {
+    return this.fetch(`https://jsonplaceholder.typicode.com/posts`)
+      .then(r => r.json())
+      .then(list => {
+        console.log({list})
+        posts = list;
+      });
+  }
 </script>
 
 <PageTitle title="記事一覧" subTitle="CRUD機能つき"></PageTitle>
