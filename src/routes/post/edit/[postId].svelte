@@ -1,29 +1,22 @@
 <script context="module">
+  export function preload({ params, query }) {
+    let { postId } = params;
+    console.log(postId);
+    return this.fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+      .then(r => r.json())
+      .then(post => {
+        return { post };
+      });
+  }
+</script>
+<script>
   import PageTitle from '../../../components/molecules/PageTitle.svelte'
   import Button from 'svelma/src/components/Button.svelte'
   import Input from 'svelma/src/components/Input.svelte'
   import Progress from 'svelma/src/components/Progress.svelte'
 
-  let post = {
-    id: null,
-    title: '',
-    body: '',
-    userId: null
-  }
+  export let post;
   let posting = false;
-
-  export function preload({ params, query }) {
-    console.log(params);
-    console.log(query);
-    let { postId } = params;
-    console.log(postId);
-    return this.fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
-      .then(r => r.json())
-      .then(p => {
-        console.log(p)
-        post = p;
-      });
-  }
 
   // 編集
   function editPost() {
