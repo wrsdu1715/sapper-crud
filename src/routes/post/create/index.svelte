@@ -46,6 +46,16 @@
   }
 </script>
 
+<style>
+  .cv-button {
+    margin: 1rem;
+  }
+
+  .success-list {
+    margin: 1rem;
+  }
+</style>
+
 <PageTitle title="新規作成" subTitle="新しい記事を作成する"></PageTitle>
 
 <form name="form">
@@ -57,7 +67,7 @@
     <label for="body">内容</label>
     <Input type="text" bind:value={post.body} />
   </fieldset>
-  <div>
+  <div class="cv-button">
     <Button type="is-primary" on:click={createPost}>新規登録する</Button>
     <a rel=prefetch href="post">一覧に戻る</a>
   </div>
@@ -68,7 +78,9 @@
 {/if}
 
 {#each createdPosts as createdPost}
-  <PostCard post={createdPost} />
+  <div class="success-list" >
+    <PostCard post={createdPost} />
+  </div>
 {:else}
   <p>ここに新規登録に成功した情報が表示されます</p>
 {/each}
