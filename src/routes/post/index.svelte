@@ -1,20 +1,21 @@
 <script context="module">
+  export function preload({ params, query }) {
+    return this.fetch(`https://jsonplaceholder.typicode.com/posts`)
+      .then(r => r.json())
+      .then(posts => {
+        console.log(`prefetch: ${posts.length}件`)
+        return { posts };
+      });
+  }
+</script>
+<script>
   import PageTitle from '../../components/molecules/PageTitle.svelte'
   import IconTrash from '../../components/atoms/IconTrash.svelte'
   import Button from 'svelma/src/components/Button.svelte'
   import { Dialog, Toast } from 'svelma'
 
-  let posts = [];
+  export let posts = [];
   let loading = false;
-
-  export function preload({ params, query }) {
-    return this.fetch(`https://jsonplaceholder.typicode.com/posts`)
-      .then(r => r.json())
-      .then(list => {
-        console.log(`prefetch: ${list.length}件`)
-        posts = list;
-      });
-  }
 
   function onDelete(post) {
     if (post === null) { return }
@@ -35,9 +36,7 @@
         method: 'DELETE'
       })
       .then(r => {
-        const i = posts.findIndex((p) => p.id === post.id);
-        console.log('delete:' + i)
-        posts = posts.splice(i, 1);
+        posts = posts.filter(p => p.id !== post.id);
         Toast.create({
           message: r.ok ? '削除成功' : '削除失敗',
           type: r.ok ? 'is-success' : 'is-danger'
