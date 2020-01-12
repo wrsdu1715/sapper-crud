@@ -32,7 +32,7 @@
     {#each posts as post (post.id)}
       <tr>
         <td>{post.id}</td>
-        <td>{post.title}</td>
+        <td><a rel=prefetch href="post/edit/{post.id}">{post.title}</a></td>
       </tr>
     {:else}
       {#if !loading}

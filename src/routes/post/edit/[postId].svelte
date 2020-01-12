@@ -1,26 +1,37 @@
-<script>
+<script context="module">
   import PageTitle from '../../../components/molecules/PageTitle.svelte'
   import Button from 'svelma/src/components/Button.svelte'
   import Input from 'svelma/src/components/Input.svelte'
   import Progress from 'svelma/src/components/Progress.svelte'
-  // Identifier is expected エラーで使えない
-  // import Snackbar from 'svelma/src/components/Snackbar/Snackbar.svelte'
-  // import Field from 'svelma/src/components/Field.svelte'
 
   let post = {
+    id: null,
     title: '',
     body: '',
-    userId: 1
+    userId: null
   }
   let posting = false;
 
-  // 新規作成
-  function createPost() {
+  export function preload({ params, query }) {
+    console.log(params);
+    console.log(query);
+    let { postId } = params;
+    console.log(postId);
+    return this.fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+      .then(r => r.json())
+      .then(p => {
+        console.log(p)
+        post = p;
+      });
+  }
+
+  // 編集
+  function editPost() {
     if (posting) { return };
     console.log({post})
     posting = true;
-    fetch(`https://jsonplaceholder.typicode.com/posts`, {
-        method: 'POST',
+    fetch(`https://jsonplaceholder.typicode.com/posts/${post.id}`, {
+        method: 'PUT',
         body: JSON.stringify(post),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
@@ -38,7 +49,7 @@
   }
 </script>
 
-<PageTitle title="新規作成" subTitle="新しい記事を作成する"></PageTitle>
+<PageTitle title="編集" subTitle="記事を編集する"></PageTitle>
 
 <form name="form">
   <fieldset label="title">
@@ -50,7 +61,7 @@
     <Input type="text" bind:value={post.body} />
   </fieldset>
   <div>
-    <Button type="is-primary" on:click={createPost}>新規登録する</Button>
+    <Button type="is-primary" on:click={editPost}>編集する</Button>
     <a href="post">一覧に戻る</a>
   </div>
 </form>
@@ -58,13 +69,3 @@
 {#if posting}
   <Progress type="is-primary" max="100"></Progress>
 {/if}
-
-<!-- Fieldのエラーが発生するためSvelmaは使用しない -->
-<!-- ../sapper-crud/node_modules/svelma/src/components/Field.svelte
-Identifier is expected
- 95: <style lang="scss">
- 96:   .field {
- 97:     &.is-grouped {
-         ^
- 98:       .field {
- 99:         flex-shrink: 0; -->
