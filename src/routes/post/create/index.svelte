@@ -3,8 +3,7 @@
   import Button from 'svelma/src/components/Button.svelte'
   import Input from 'svelma/src/components/Input.svelte'
   import Progress from 'svelma/src/components/Progress.svelte'
-  // Identifier is expected エラーで使えない
-  // import Snackbar from 'svelma/src/components/Snackbar/Snackbar.svelte'
+  import { Snackbar } from 'svelma'
   // import Field from 'svelma/src/components/Field.svelte'
 
   let post = {
@@ -28,8 +27,14 @@
       })
       .then(response => response.json())
       .then(json => {
-        console.log(json);
-        posting = false;
+        console.log(json)
+        Snackbar.create({ message: '新規登録成功' })
+        post = {
+          title: '',
+          body: '',
+          userId: 1
+        }
+        posting = false
         })
       .catch(error => {
         console.log(error);
