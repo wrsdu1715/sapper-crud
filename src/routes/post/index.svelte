@@ -3,7 +3,6 @@
   import IconTrash from '../../components/atoms/IconTrash.svelte'
   import Button from 'svelma/src/components/Button.svelte'
   import { Dialog, Toast } from 'svelma'
-  import PostCard from '../../components/molecules/PostCard.svelte'
 
   let posts = [];
   let loading = false;
