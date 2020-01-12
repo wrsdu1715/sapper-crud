@@ -1,5 +1,6 @@
 <script>
   import PageTitle from '../../../components/molecules/PageTitle.svelte'
+  import PostCard from '../../../components/molecules/PostCard.svelte'
   import Button from 'svelma/src/components/Button.svelte'
   import Input from 'svelma/src/components/Input.svelte'
   import Progress from 'svelma/src/components/Progress.svelte'
@@ -12,6 +13,7 @@
     userId: 1
   }
   let posting = false;
+  let createdPosts = []
 
   // 新規作成
   function createPost() {
@@ -29,6 +31,7 @@
       .then(json => {
         console.log(json)
         Snackbar.create({ message: '新規登録成功' })
+        createdPosts = [...createdPosts, post]
         post = {
           title: '',
           body: '',
@@ -56,13 +59,19 @@
   </fieldset>
   <div>
     <Button type="is-primary" on:click={createPost}>新規登録する</Button>
-    <a href="post">一覧に戻る</a>
+    <a rel=prefetch href="post">一覧に戻る</a>
   </div>
 </form>
 
 {#if posting}
   <Progress type="is-primary" max="100"></Progress>
 {/if}
+
+{#each createdPosts as createdPost}
+  <PostCard post={createdPost} />
+{:else}
+  <p>ここに新規登録に成功した情報が表示されます</p>
+{/each}
 
 <!-- Fieldのエラーが発生するためSvelmaは使用しない -->
 <!-- ../sapper-crud/node_modules/svelma/src/components/Field.svelte

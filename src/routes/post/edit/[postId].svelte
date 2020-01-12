@@ -14,6 +14,7 @@
   import Button from 'svelma/src/components/Button.svelte'
   import Input from 'svelma/src/components/Input.svelte'
   import Progress from 'svelma/src/components/Progress.svelte'
+  import { Snackbar } from 'svelma'
 
   export let post;
   let posting = false;
@@ -33,6 +34,7 @@
       .then(response => response.json())
       .then(json => {
         console.log(json);
+        Snackbar.create({ message: ' 編集成功' })
         posting = false;
         })
       .catch(error => {
@@ -55,7 +57,7 @@
   </fieldset>
   <div>
     <Button type="is-primary" on:click={editPost}>編集する</Button>
-    <a href="post">一覧に戻る</a>
+    <a rel=prefetch href="post">一覧に戻る</a>
   </div>
 </form>
 
