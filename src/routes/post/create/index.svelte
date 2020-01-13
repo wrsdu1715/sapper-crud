@@ -5,6 +5,7 @@
   import Input from 'svelma/src/components/Input.svelte'
   import Progress from 'svelma/src/components/Progress.svelte'
   import { Snackbar } from 'svelma'
+  import { onMount } from 'svelte'
   // import Field from 'svelma/src/components/Field.svelte'
 
   let post = {
@@ -14,6 +15,17 @@
   }
   let posting = false;
   let createdPosts = []
+  let inputFocus = null
+
+  onMount(() => {
+    init()
+  })
+
+  function init() {
+    setTimeout(() => {
+      inputFocus.focus()
+    }, 1)
+  }
 
   // 新規作成
   function createPost() {
@@ -37,6 +49,7 @@
           body: '',
           userId: 1
         }
+        init()
         posting = false
         })
       .catch(error => {
@@ -61,7 +74,7 @@
 <form name="form">
   <fieldset label="title">
     <label for="title">タイトル</label>
-    <Input type="text" bind:value={post.title} id="title" name="title" />
+    <input type="text" bind:value={post.title} class="input" placeholder="normal" bind:this={inputFocus} />
   </fieldset>
   <fieldset label="body">
     <label for="body">内容</label>
