@@ -13,6 +13,14 @@
   import IconTrash from '../../components/atoms/IconTrash.svelte'
   import Button from 'svelma/src/components/Button.svelte'
   import { Dialog, Toast } from 'svelma'
+  import { stores } from '@sapper/app'
+  import UAParser from 'ua-parser-js'
+
+  // モバイルorデスクトップか判定
+  const { session } = stores()
+  var parser = new UAParser()
+  parser.setUA($session['user-agent'])
+  const isMobile = parser.getResult().device['type'] == 'mobile'
 
   export let posts = [];
   let loading = false;
@@ -63,7 +71,7 @@
     {#each posts as post (post.id)}
       <tr>
         <td>{post.id}</td>
-        <td><a rel=prefetch href="post/edit/{post.id}">{post.title}</a></td>
+        <td><a rel=prefetch href="post/edit/{post.id}">{isMobile ? post.title.substring(0, 25) + '...' : post.title}</a></td>
         <td><a on:click={() => onDelete(post)} href="javascript:void(0)"><IconTrash /></a></td>
       </tr>
     {:else}
