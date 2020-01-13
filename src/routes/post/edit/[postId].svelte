@@ -3,8 +3,8 @@
     let ogp = {}
     ogp.url = 'https://' + host + path
     ogp.type = 'article'
-    ogp.title = '記事編集タイトル'
-    ogp.description = '記事詳細'
+    // ogp.title = '記事編集タイトル'
+    // ogp.description = '記事詳細'
     ogp.site_name = 'サイト名'
     ogp.image = 'https://placehold.jp/cc9999/993333/150x150.png'
 
@@ -16,6 +16,8 @@
     return this.fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
       .then(r => r.json())
       .then(post => {
+        ogp.title=post.title
+        ogp.description=post.body
         return { post, ogp };
       });
   }
