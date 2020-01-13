@@ -35,11 +35,16 @@
 <script>
 import 'bulma/css/bulma.css'
 import Button from 'svelma/src/components/Button.svelte'
-
+let title = "Sapper project template"
 </script>
 
 <svelte:head>
 	<title>Sapper project template</title>
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="{title}" />
+  <meta property="og:description" content="ページの説明" />
+  <meta property="og:site_name" content="サイト名" />
+  <meta property="og:image" content="https://placehold.jp/cc9999/993333/150x150.png" />
 </svelte:head>
 
 <h1>Great success!</h1>
