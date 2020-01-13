@@ -1,11 +1,22 @@
 <script context="module">
-  export function preload({ params, query }) {
+  export function preload({ host, path, params }) {
+    let ogp = {}
+    ogp.url = 'https://' + host + path
+    ogp.type = 'article'
+    ogp.title = '記事編集タイトル'
+    ogp.description = '記事詳細'
+    ogp.site_name = 'サイト名'
+    ogp.image = 'https://placehold.jp/cc9999/993333/150x150.png'
+
+    console.log(host)
+    console.log(path)
+    console.log(params)
     let { postId } = params;
-    console.log(postId);
+    console.log('preload: postId=' + postId);
     return this.fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
       .then(r => r.json())
       .then(post => {
-        return { post };
+        return { post, ogp };
       });
   }
 </script>
@@ -17,6 +28,8 @@
   import { Snackbar } from 'svelma'
 
   export let post;
+  export let ogp;
+
   let posting = false;
 
   // 編集
@@ -43,6 +56,16 @@
         })
   }
 </script>
+
+<svelte:head>
+  <title>Sapper project template</title>
+  <meta property="og:url" content={ogp.url} />
+  <meta property="og:type" content={ogp.type} />
+  <meta property="og:title" content={ogp.title} />
+  <meta property="og:description" content={ogp.description} />
+  <meta property="og:site_name" content={ogp.site_name} />
+  <meta property="og:image" content={ogp.image} />
+</svelte:head>
 
 <PageTitle title="編集" subTitle="記事を編集する"></PageTitle>
 
