@@ -1,6 +1,8 @@
 <script>
   import "bulma/css/bulma.css";
   import Button from "svelma/src/components/Button.svelte";
+  import ButtonBlue from "../components/atoms/ButtonBlue.svelte";
+  import ButtonRed from "../components/atoms/ButtonRed.svelte";
   let title = "Sapper project template";
 </script>
 
@@ -60,6 +62,9 @@
 
 <h1>Great success!</h1>
 <Button type="is-primary">I'm a Button!</Button>
+
+<ButtonBlue value="I'm blue" />
+<ButtonRed value="I'm red" />
 
 <figure>
   <img alt="Borat" src="great-success.png" />
