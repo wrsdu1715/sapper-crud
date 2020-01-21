@@ -1,0 +1,13 @@
+@import "./common.scss";
+
+.myBtn {
+  width: $WIDTH_NORMAL_BUTTON;
+}
+
+.myBtn.red {
+  background-color: $COLOR_RED;
+}
+
+.myBtn.blue {
+  background-color: $COLOR_BLUE;
+}
