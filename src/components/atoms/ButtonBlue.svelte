@@ -3,8 +3,4 @@
   export let value;
 </script>
 
-<style lang="scss">
-  @import "../../styles/button.scss";
-</style>
-
-<Button color="blue" {value} />
+<Button color="blue" on:message {value} />

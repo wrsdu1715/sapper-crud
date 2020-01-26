@@ -1,9 +1,6 @@
 <script>
-  export let value = "送信";
+  import Button from "./Button.svelte";
+  export let value;
 </script>
 
-<style lang="scss">
-  @import "../../styles/button.scss";
-</style>
-
-<input class="myBtn red" type="button" {value} />
+<Button color="red" on:message {value} />

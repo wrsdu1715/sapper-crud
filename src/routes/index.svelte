@@ -4,6 +4,14 @@
   import ButtonBlue from "../components/atoms/ButtonBlue.svelte";
   import ButtonRed from "../components/atoms/ButtonRed.svelte";
   let title = "Sapper project template";
+
+  function hadleClickBlue() {
+    alert("青クリック");
+  }
+
+  function hadleClickRed() {
+    alert("赤クリック");
+  }
 </script>
 
 <style lang="scss">
@@ -63,8 +71,8 @@
 <h1>Great success!</h1>
 <Button type="is-primary">I'm a Button!</Button>
 
-<ButtonBlue value="I'm blue" />
-<ButtonRed value="I'm red" />
+<ButtonBlue value="I'm blue" on:message={hadleClickBlue} />
+<ButtonRed value="I'm red" on:message={hadleClickRed} />
 
 <figure>
   <img alt="Borat" src="great-success.png" />
