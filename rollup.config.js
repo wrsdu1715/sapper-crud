@@ -19,7 +19,12 @@ const preprocess = sveltePreprocess({
 	scss: {
 		scss: true,
 		data: `@import 'src/styles/common.scss';`
-	}
+	},
+	postcss:{
+    plugins: [
+      require('autoprefixer')
+    ]
+  }
 });
 
 export default {
