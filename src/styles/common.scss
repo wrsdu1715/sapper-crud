@@ -1,4 +1,14 @@
-$COLOR_RED  : #ff5c00;
-$COLOR_BLUE : #00baea;
+//カラー
+$v-baseColor  : #ffffff;
+$v-pointColor : #4cb7c3;
+$v-premiumColor : #c39d4d;
+$v-attentionColor : #de3049;
 
-$WIDTH_NORMAL_BUTTON  : 200px !default;
+//角丸変数　初期値5px
+@mixin m-radius($value:5px){
+  -webkit-border-radius: $value;
+     -moz-border-radius: $value;
+       -o-border-radius: $value;
+      -ms-border-radius: $value;
+          border-radius: $value;
+}

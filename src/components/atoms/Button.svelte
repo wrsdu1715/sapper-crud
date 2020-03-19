@@ -11,16 +11,25 @@
       class: "myBtn"
     },
     blue: {
-      class: "myBtn blue"
+      class: "myBtn_blue"
     },
     red: {
-      class: "myBtn red"
+      class: "myBtn_red"
     }
   };
 </script>
 
 <style lang="scss">
-  @import "../../styles/button.scss";
+  @import "../../styles/common.scss";
+  .myBtn{
+    &_blue{
+      background-color: $COLOR_BLUE;
+    }
+
+    &_red{
+      background-color: $COLOR_RED;
+    }
+  }
 </style>
 
 <input
