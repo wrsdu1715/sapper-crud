@@ -16,7 +16,10 @@ const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /
 const dedupe = importee => importee === 'svelte' || importee.startsWith('svelte/');
 
 const preprocess = sveltePreprocess({
-	scss: true,
+	scss: {
+		scss: true,
+		data: `@import 'src/styles/common.scss';`
+	}
 });
 
 export default {

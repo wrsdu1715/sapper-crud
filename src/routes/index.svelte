@@ -1,59 +1,28 @@
 <script>
+  import Cards from '../components/molecules/Cards.svelte';
   import "bulma/css/bulma.css";
-  import Button from "svelma/src/components/Button.svelte";
-  import ButtonBlue from "../components/atoms/ButtonBlue.svelte";
-  import ButtonRed from "../components/atoms/ButtonRed.svelte";
   let title = "Sapper project template";
-
-  function hadleClickBlue() {
-    alert("青クリック");
-  }
-
-  function hadleClickRed() {
-    alert("赤クリック");
-  }
 </script>
 
 <style lang="scss">
-  $gradient: linear-gradient(-90deg, #ff00a1, #f6ff00);
-
-  figure {
-    margin: 0 0 1em 0;
-    background-image: $gradient;
-  }
-
-  h1,
-  figure,
-  p {
-    text-align: center;
-    margin: 0 auto;
-  }
 
   h1 {
     font-size: 2.8em;
     text-transform: uppercase;
     font-weight: 700;
     margin: 0 0 0.5em 0;
+    text-align: center;
+    margin: 0 auto;
   }
 
-  figure {
-    margin: 0 0 1em 0;
-  }
-
-  img {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 0 1em 0;
-  }
-
-  p {
-    margin: 1em auto;
-  }
-
-  @media (min-width: 480px) {
-    h1 {
-      font-size: 4em;
-    }
+  .test{
+    font-size: 1.2rem;
+    color: $v-pointColor;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #444;
+    //mixin使用
+    @include m-radius(5px);
   }
 </style>
 
@@ -69,18 +38,7 @@
 </svelte:head>
 
 <h1>Great success!</h1>
-<Button type="is-primary">I'm a Button!</Button>
+<p class="test">グローバルscssからmxinを使った場合</p>
+<p class="button">グローバルscssからextendを使った場合</p>
 
-<ButtonBlue value="I'm blue" on:message={hadleClickBlue} />
-<ButtonRed value="I'm red" on:message={hadleClickRed} />
-
-<figure>
-  <img alt="Borat" src="great-success.png" />
-  <figcaption>HIGH FIVE!</figcaption>
-</figure>
-
-<p>
-  <strong>
-    Try editing this file (src/routes/index.svelte) to test live reloading.
-  </strong>
-</p>
+<Cards />
