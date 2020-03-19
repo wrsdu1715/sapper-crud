@@ -1,4 +1,5 @@
 <style lang="scss">
+@import "../../styles/common.scss";
 .card{
   border: 1px solid $v-attentionColor;
 

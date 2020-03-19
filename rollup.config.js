@@ -16,13 +16,14 @@ const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /
 const dedupe = importee => importee === 'svelte' || importee.startsWith('svelte/');
 
 const preprocess = sveltePreprocess({
-	scss: {
-		scss: true,
+	/*scss: {
 		data: `@import 'src/styles/common.scss';`
-	},
+	},*/
 	postcss:{
+		postcss: true,
+		parse:'postcss-scss',
     plugins: [
-      require('autoprefixer')
+			require('autoprefixer'),
     ]
   }
 });

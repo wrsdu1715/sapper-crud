@@ -5,7 +5,7 @@
 </script>
 
 <style lang="scss">
-
+@import "../styles/common.scss";
   h1 {
     font-size: 2.8em;
     text-transform: uppercase;

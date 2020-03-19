@@ -3,6 +3,7 @@
 </script>
 
 <style lang="scss">
+@import "../../styles/common.scss";
   .cards{
     border: 1px solid $v-pointColor ;
     padding: 10px;
